@@ -1,30 +1,35 @@
 package com.pdproject.product.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "products")
-public class Product implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
 
+    @NotBlank(message = "name is required!")
     private String name;
 
+    @NotBlank(message = "description is required!")
+    private String description;
+
+    @NotBlank(message = "name is required!")
     private int quantity;
 
-    private BigDecimal value;
+    @NotBlank(message = "price is required!")
+    private BigDecimal price;
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -44,11 +49,11 @@ public class Product implements Serializable {
         this.quantity = quantity;
     }
 
-    public BigDecimal getValue() {
-        return value;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setValue(BigDecimal value) {
-        this.value = value;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }
