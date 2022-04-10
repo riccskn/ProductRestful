@@ -87,7 +87,7 @@ public class ProductController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "successful operation"),
             @ApiResponse(responseCode = "400", description = "Invalid body") })
-    @PutMapping("/product")
+    @PutMapping("/product/{id}")
       public ResponseEntity<Void> updateProduct(@Valid @RequestBody Product product) {
 
        productService.save(product);

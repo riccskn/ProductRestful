@@ -1,5 +1,7 @@
 package com.pdproject.product.service.impl;
 
+import com.pdproject.product.dto.ProductDTO;
+import com.pdproject.product.dto.mapper.ProductMapper;
 import com.pdproject.product.exception.EntityNotFoundException;
 import com.pdproject.product.model.Product;
 import com.pdproject.product.repository.ProductRepository;
@@ -12,11 +14,15 @@ import java.util.List;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    @Autowired
-    ProductRepository productRepository;
+    private ProductRepository productRepository;
 
-    public ProductServiceImpl(ProductRepository repository) {
+    private ProductMapper productMapper;
+
+     ModelMapper
+
+    public ProductServiceImpl(ProductRepository repository,ProductMapper mapper) {
         this.productRepository = repository;
+        this.productMapper = mapper;
     }
 
     @Override
@@ -30,12 +36,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void save(Product product) {
-        productRepository.save(product);
+    public void save(ProductDTO productDTO) {
+        productRepository.save(Produc);
     }
 
     @Override
     public void deleteById(long id) {
+
+        Product product = productRepository.findById(id).orElseThrow(() -> {
+            throw new EntityNotFoundException(id);
+        });
+
         productRepository.deleteById(id);
     }
 }
