@@ -1,0 +1,19 @@
+postgres:
+  host: ${POSTGRES_HOST:localhost:5432}
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${postgres.host}/dbproducts
+    username: postgres
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+springdoc:
+  swagger-ui:
+    path: "/documentation"
+server:
+  error:
+    include-message: always
+  port: 8081

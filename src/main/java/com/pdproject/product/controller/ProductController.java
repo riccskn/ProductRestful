@@ -1,5 +1,6 @@
 package com.pdproject.product.controller;
 
+import com.pdproject.product.dto.ProductDTO;
 import com.pdproject.product.model.Product;
 import com.pdproject.product.repository.ProductRepository;
 import com.pdproject.product.service.ProductService;
@@ -50,7 +51,7 @@ public class ProductController {
             @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Product.class)))),
             @ApiResponse(responseCode = "400", description = "Invalid status value") })
     @GetMapping("/product/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable(value = "id") long id) {
+    public ResponseEntity<ProductDTO> getProduct(@PathVariable(value = "id") long id) {
 
       return new ResponseEntity<>(productService.findById(id),HttpStatus.OK);
     }
@@ -74,7 +75,7 @@ public class ProductController {
             @ApiResponse(responseCode = "201", description = "created"),
             @ApiResponse(responseCode = "400", description = "Invalid body") })
     @PostMapping("/product")
-       public ResponseEntity<Void> saveProduct(@Valid @RequestBody Product product) {
+       public ResponseEntity<Void> saveProduct(@Valid @RequestBody ProductDTO product) {
 
         productService.save(product);
 
@@ -88,7 +89,7 @@ public class ProductController {
             @ApiResponse(responseCode = "200", description = "successful operation"),
             @ApiResponse(responseCode = "400", description = "Invalid body") })
     @PutMapping("/product/{id}")
-      public ResponseEntity<Void> updateProduct(@Valid @RequestBody Product product) {
+      public ResponseEntity<Void> updateProduct(@Valid @RequestBody ProductDTO product) {
 
        productService.save(product);
 
