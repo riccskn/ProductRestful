@@ -31,9 +31,7 @@ public class ProductController {
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
-
-
-
+    
     @Operation(summary = "Get all products", description = "This return the all products saved")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Product.class)))),
@@ -44,7 +42,6 @@ public class ProductController {
         return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
 
     }
-
 
     @Operation(summary = "Get product by id", description = "Return only one product by id")
     @ApiResponses(value = {
